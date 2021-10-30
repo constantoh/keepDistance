@@ -1,2 +1,4 @@
-package com.sangsoo.keepDistance.service.menu.domain;public class Menu {
+package com.sangsoo.keepDistance.service.menu.domain;
+
+public class Menu {
 }

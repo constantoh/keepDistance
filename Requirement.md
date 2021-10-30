@@ -1,22 +1,21 @@
-# Getting Started
+# 요구사항 명세서
 
-### Reference Documentation
-For further reference, please consider the following sections:
+### 밀집정도 제공 
+학교 내 건물들(식당)의 밀집정도를 보여준다.
+* 앱이 켜지는 순간 바로 현재의 위치 정보를 입력으로 받아서 현재 위치한 건물의 밀집정보를 **update**한다.
+* 밀집정도 요청 들어오면 관들마다의 밀접정도를 **select**해서 전송한다.
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.5.5/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.5.5/gradle-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.5.5/reference/htmlsingle/#boot-features-developing-web-applications)
+### 메뉴
+식당들 메뉴를 보여준다.
+* 식당들 메뉴는 **Database**에 직접 **Insert**한다.
+* 식당들 별로 메뉴가 있으니깐 Key는 요일, 식당 메뉴~
+* /menu/selectMenu(Post)  
 
-### Guides
-The following guides illustrate how to use some features concretely:
+### 게시판
+게시판 기능을 제공한다.
+* 익명으로 글을 쓴다.
+* 회원가입은 하지 않으니깐 그냥 ip로 등록자 저장한다.
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-
-### Additional Links
-These additional references should also help you:
-
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+### 길찾기
+길찾기 기능을 제공한다.
+* 어떤 API를 사용할 지는 모르겠다. (네이버, 카카오)

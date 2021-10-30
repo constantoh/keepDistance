@@ -1,4 +1,4 @@
-package com.sangsoo.keepDistance.service.gps.web.dto;
+package com.sangsoo.keepDistance.service.congestion.web.dto;
 
 import lombok.Data;
 
