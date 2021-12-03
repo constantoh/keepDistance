@@ -7,6 +7,13 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StreamUtils;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -20,8 +27,14 @@ public class BoardServiceImpl implements BoardService{
     @Transactional
     @Override
     public Long save(BoardSaveRequestDto input) {
-        Board board = repository.save(input.toEntity());
 
-        return board.getId();
+        return 1L;
+    }
+    public Long save(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+
+        return 1L;
     }
 }

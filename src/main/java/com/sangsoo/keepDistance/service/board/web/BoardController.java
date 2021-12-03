@@ -1,12 +1,23 @@
 package com.sangsoo.keepDistance.service.board.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sangsoo.keepDistance.service.board.domain.Board;
 import com.sangsoo.keepDistance.service.board.service.BoardService;
 import com.sangsoo.keepDistance.service.board.service.BoardServiceImpl;
 import com.sangsoo.keepDistance.service.board.web.dto.BoardSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 public class BoardController {
@@ -14,22 +25,52 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    ObjectMapper objectMapper = new ObjectMapper();
+
     public BoardController(BoardService boardService) {
 //        this.boardService = new BoardServiceImpl(new Board());
     }
 
     @GetMapping("/board")
-    public String showBoard() {
-        return "name:오상수";
+    public ResponseEntity<BoardSaveRequestDto> showBoard() {
+        BoardSaveRequestDto dto = new BoardSaveRequestDto("123", "456", "789");
+
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/board/dto")
     public BoardSaveRequestDto boardDto(@RequestParam("ip")String ip, @RequestParam("title")String title, @RequestParam("contents")String contents) {
         return new BoardSaveRequestDto(ip, title, contents);
     }
-
+//
+//    @PostMapping("/board/save")
+//    public Long save(@RequestBody BoardSaveRequestDto requestDto) {
+//        System.out.println(requestDto.toString());
+//        System.out.println();
+//        return boardService.save(requestDto);
+//    }
     @PostMapping("/board/save")
-    public Long save(@RequestBody BoardSaveRequestDto requestDto) {
-        return boardService.save(requestDto);
+    public Long save(@RequestBody String messageBody) throws IOException {
+        System.out.println(messageBody);
+        BoardSaveRequestDto data = objectMapper.readValue(messageBody, BoardSaveRequestDto.class);
+
+        System.out.println(data.toString());
+
+
+        return 1L;
+    }
+
+    @PostMapping("/board/save3")
+    public Long save(@RequestParam("ip")String ip, @RequestParam("title")String title, @RequestParam("contents")String contents) {
+
+        return boardService.save(new BoardSaveRequestDto(ip, title, contents));
+    }
+
+    @PostMapping("/board/save2")
+    public Long save(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        System.out.println(messageBody);
+        return 1L;
     }
 }
