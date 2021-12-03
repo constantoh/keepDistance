@@ -32,7 +32,7 @@ public class BoardRepositoryTest {
         String title = "test Title";
         String contents = "test Contents";
         repository.save(Board.builder()
-                .ip(ip)
+                .author(ip)
                 .title(title)
                 .contents(contents)
                 .build());

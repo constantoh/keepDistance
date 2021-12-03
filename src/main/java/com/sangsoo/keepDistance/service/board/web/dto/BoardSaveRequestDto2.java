@@ -4,26 +4,22 @@ import com.sangsoo.keepDistance.service.board.domain.Board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class BoardSaveRequestDto {
-    private String ip;
-    private String title;
+public class BoardSaveRequestDto2 {
+    private String author;
     private String contents;
 
     @Builder
-    public BoardSaveRequestDto(String ip, String title, String contents) {
-        this.ip = ip;
-        this.title = title;
+    public BoardSaveRequestDto2(String author, String contents) {
+        this.author = author;
         this.contents = contents;
     }
 
     public Board toEntity(){
         return Board.builder()
-                .author(ip)
-                .title(title)
+                .author(author)
                 .contents(contents)
                 .build();
     }

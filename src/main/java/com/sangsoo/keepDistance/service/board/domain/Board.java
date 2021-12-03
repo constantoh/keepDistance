@@ -25,8 +25,8 @@ public class Board {
     private String contents;
 
     @Builder
-    public Board(String ip, String title, String contents){
-        this.ip = ip;
+    public Board(String author, String title, String contents){
+        this.ip = author;
         this.title = title;
         this.contents = contents;
 

@@ -5,6 +5,7 @@ import com.sangsoo.keepDistance.service.board.domain.Board;
 import com.sangsoo.keepDistance.service.board.service.BoardService;
 import com.sangsoo.keepDistance.service.board.service.BoardServiceImpl;
 import com.sangsoo.keepDistance.service.board.web.dto.BoardSaveRequestDto;
+import com.sangsoo.keepDistance.service.board.web.dto.BoardSaveRequestDto2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,8 +34,8 @@ public class BoardController {
     }
 
     @GetMapping("/api/v1/posts/1")
-    public ResponseEntity<BoardSaveRequestDto> showBoard() {
-        BoardSaveRequestDto dto = new BoardSaveRequestDto("235.212.26.22", "제목입니다.", "내용입니다.");
+    public ResponseEntity<BoardSaveRequestDto2> showBoard() {
+        BoardSaveRequestDto2 dto = new BoardSaveRequestDto2("홍길동", "오늘 중앙식당 메뉴 맛있었어요");
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
