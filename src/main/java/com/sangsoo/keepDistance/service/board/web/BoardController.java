@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @RestController
 public class BoardController {
@@ -31,24 +32,24 @@ public class BoardController {
 //        this.boardService = new BoardServiceImpl(new Board());
     }
 
-    @GetMapping("/board")
+    @GetMapping("/api/v1/posts/1")
     public ResponseEntity<BoardSaveRequestDto> showBoard() {
-        BoardSaveRequestDto dto = new BoardSaveRequestDto("123", "456", "789");
+        BoardSaveRequestDto dto = new BoardSaveRequestDto("235.212.26.22", "제목입니다.", "내용입니다.");
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
+//    @GetMapping("/board/list")
+//    public List<Board> allList(){
+//        boardService.
+//
+//    }
 
     @GetMapping("/board/dto")
     public BoardSaveRequestDto boardDto(@RequestParam("ip")String ip, @RequestParam("title")String title, @RequestParam("contents")String contents) {
         return new BoardSaveRequestDto(ip, title, contents);
     }
-//
-//    @PostMapping("/board/save")
-//    public Long save(@RequestBody BoardSaveRequestDto requestDto) {
-//        System.out.println(requestDto.toString());
-//        System.out.println();
-//        return boardService.save(requestDto);
-//    }
+
     @PostMapping("/board/save")
     public Long save(@RequestBody String messageBody) throws IOException {
         System.out.println(messageBody);
