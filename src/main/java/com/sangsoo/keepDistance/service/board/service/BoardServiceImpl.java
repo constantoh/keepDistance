@@ -40,10 +40,10 @@ public class BoardServiceImpl implements BoardService{
         return 1L;
     }
 
-    @Transactional(readOnly = true)
-    public List<Board> findAllDesc(){
-        return repository.update
-    }
+//    @Transactional(readOnly = true)
+//    public List<Board> findAllDesc(){
+//        return repository.update
+//    }
 
 
 }
