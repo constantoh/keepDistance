@@ -29,22 +29,12 @@ public class BoardController {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public BoardController(BoardService boardService) {
-//        this.boardService = new BoardServiceImpl(new Board());
-    }
-
     @GetMapping("/api/v1/posts/1")
     public ResponseEntity<BoardSaveRequestDto2> showBoard() {
         BoardSaveRequestDto2 dto = new BoardSaveRequestDto2("홍길동", "오늘 중앙식당 메뉴 맛있었어요");
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
-
-//    @GetMapping("/board/list")
-//    public List<Board> allList(){
-//        boardService.
-//
-//    }
 
     @GetMapping("/board/dto")
     public BoardSaveRequestDto boardDto(@RequestParam("ip")String ip, @RequestParam("title")String title, @RequestParam("contents")String contents) {
