@@ -1,9 +1,7 @@
 package com.sangsoo.keepDistance.service.board.service;
 
-import com.sangsoo.keepDistance.service.board.domain.Board;
+import com.sangsoo.keepDistance.service.board.web.dto.BoardSaveRequestDto;
 
 public interface BoardService {
-    void write(Board board);
-
-    Board read(Long sequence);
+    Long save(BoardSaveRequestDto input);
 }

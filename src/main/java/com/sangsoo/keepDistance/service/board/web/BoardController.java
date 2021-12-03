@@ -1,18 +1,22 @@
 package com.sangsoo.keepDistance.service.board.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sangsoo.keepDistance.service.board.domain.Board;
-import com.sangsoo.keepDistance.service.board.web.dto.BoardResponseDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import com.sangsoo.keepDistance.service.board.service.BoardService;
+import com.sangsoo.keepDistance.service.board.service.BoardServiceImpl;
+import com.sangsoo.keepDistance.service.board.web.dto.BoardSaveRequestDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BoardController {
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private BoardService boardService;
+
+    public BoardController(BoardService boardService) {
+//        this.boardService = new BoardServiceImpl(new Board());
+    }
 
     @GetMapping("/board")
     public String showBoard() {
@@ -20,7 +24,12 @@ public class BoardController {
     }
 
     @GetMapping("/board/dto")
-    public BoardResponseDto boardDto(@RequestParam("ip")String ip, @RequestParam("contents")String contents) {
-        return new BoardResponseDto(ip, contents);
+    public BoardSaveRequestDto boardDto(@RequestParam("ip")String ip, @RequestParam("title")String title, @RequestParam("contents")String contents) {
+        return new BoardSaveRequestDto(ip, title, contents);
+    }
+
+    @PostMapping("/board/save")
+    public Long save(@RequestBody BoardSaveRequestDto requestDto) {
+        return boardService.save(requestDto);
     }
 }
